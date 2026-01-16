@@ -1,0 +1,40 @@
+package safeconv
+
+import (
+	"errors"
+	"fmt"
+)
+
+// Sentinel errors for type conversion failures.
+var (
+	// ErrOverflow indicates the value is too large for the target type.
+	ErrOverflow = errors.New("value overflows target type")
+
+	// ErrUnderflow indicates the value is too small for the target type
+	// (e.g., negative value to unsigned type).
+	ErrUnderflow = errors.New("value underflows target type")
+
+	// ErrNaN indicates the value is NaN and cannot be converted.
+	ErrNaN = errors.New("cannot convert NaN")
+
+	// ErrInfinity indicates the value is infinite and cannot be converted.
+	ErrInfinity = errors.New("cannot convert infinity")
+)
+
+// ConversionError provides detailed information about a failed conversion.
+type ConversionError struct {
+	From  string // Source type name (e.g., "int64")
+	To    string // Target type name (e.g., "uint32")
+	Value any    // The value that failed to convert
+	Err   error  // Underlying sentinel error
+}
+
+// Error returns a human-readable error message.
+func (e *ConversionError) Error() string {
+	return fmt.Sprintf("cannot convert %s(%v) to %s: %s", e.From, e.Value, e.To, e.Err)
+}
+
+// Unwrap returns the underlying sentinel error for use with errors.Is.
+func (e *ConversionError) Unwrap() error {
+	return e.Err
+}
