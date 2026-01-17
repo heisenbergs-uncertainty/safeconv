@@ -1,6 +1,6 @@
 # safeconv
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/heisenbergs-uncertainty/safeconv.svg)](https://pkg.go.dev/github.com/heisenbergs-uncertainty/safeconv)
+[![Go Reference](https://pkg.go.dev/badge/github.com/heisenbergs-uncertainty/safecon)](https://pkg.go.dev/github.com/heisenbergs-uncertainty/safeconv)
 [![Go Report Card](https://goreportcard.com/badge/github.com/heisenbergs-uncertainty/safeconv)](https://goreportcard.com/report/github.com/heisenbergs-uncertainty/safeconv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
