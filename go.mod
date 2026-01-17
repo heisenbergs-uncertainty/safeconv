@@ -1,3 +1,3 @@
 module github.com/heisenbergs-uncertainty/safeconv
 
-go 1.24.11
+go 1.21
