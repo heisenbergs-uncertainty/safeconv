@@ -1,7 +1,7 @@
 # safeconv Design Document
 
 **Date:** 2026-01-16
-**Module:** `github.com/heisenbergs-uncertainty/safeconv`
+**Module:** `github.com/matthew-reed-holden/safeconv`
 **Status:** Approved
 
 ## Overview
@@ -37,7 +37,7 @@ val, err := safeconv.Int64ToUint32(x)
 Following the `strconv` pattern, all functions live at the top level.
 
 ```go
-import "github.com/heisenbergs-uncertainty/safeconv"
+import "github.com/matthew-reed-holden/safeconv"
 
 val, err := safeconv.Int64ToUint32(x)
 ```

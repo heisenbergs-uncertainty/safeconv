@@ -9,65 +9,65 @@ run:
 
 formatters:
   enable:
-    - gofmt
-    - goimports
+  - gofmt
+  - goimports
   settings:
     goimports:
       local-prefixes:
-        - github.com/heisenbergs-uncertainty/safeconv
+      - github.com/matthew-reed-holden/safeconv
 
 linters:
   default: standard
   enable:
-    - misspell
-    - unconvert
-    - unparam
-    - gocritic
-    - revive
-    - nilerr
-    - errorlint
-    - gosec
+  - misspell
+  - unconvert
+  - unparam
+  - gocritic
+  - revive
+  - nilerr
+  - errorlint
+  - gosec
 
   settings:
     govet:
       enable-all: true
       disable:
-        - fieldalignment  # Not worth optimizing struct layout in test code
+      - fieldalignment # Not worth optimizing struct layout in test code
     misspell:
       locale: US
     gocritic:
       enabled-tags:
-        - diagnostic
-        - style
-        - performance
+      - diagnostic
+      - style
+      - performance
       disabled-checks:
-        - hugeParam  # We pass small numeric types by value intentionally
+      - hugeParam # We pass small numeric types by value intentionally
     gosec:
       excludes:
-        # G115: integer overflow conversion - this library exists to handle these safely
-        # We perform bounds checking before all conversions
-        - G115
+      # G115: integer overflow conversion - this library exists to handle these safely
+      # We perform bounds checking before all conversions
+      - G115
     revive:
       rules:
-        - name: blank-imports
-        - name: context-as-argument
-        - name: context-keys-type
-        - name: dot-imports
-        - name: error-return
-        - name: error-strings
-        - name: error-naming
-        - name: exported
-        - name: if-return
-        - name: increment-decrement
-        - name: var-naming
-        - name: var-declaration
-        - name: package-comments
-        - name: range
-        - name: receiver-naming
-        - name: time-naming
-        - name: unexported-return
-        - name: indent-error-flow
-        - name: errorf
+      - name: blank-imports
+      - name: context-as-argument
+      - name: context-keys-type
+      - name: dot-imports
+      - name: error-return
+      - name: error-strings
+      - name: error-naming
+      - name: exported
+      - name: if-return
+      - name: increment-decrement
+      - name: var-naming
+      - name: var-declaration
+      - name: package-comments
+      - name: range
+      - name: receiver-naming
+      - name: time-naming
+      - name: unexported-return
+      - name: indent-error-flow
+      - name: errorf
 
 issues:
   exclude-use-default: false

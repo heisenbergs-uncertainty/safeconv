@@ -14,7 +14,7 @@ If you discover a security vulnerability in safeconv, please report it responsib
 
 1. **Do not** open a public GitHub issue for security vulnerabilities
 2. Email the maintainers directly (see repository owner's profile for contact info)
-3. Or use GitHub's [private vulnerability reporting](https://github.com/heisenbergs-uncertainty/safeconv/security/advisories/new)
+3. Or use GitHub's [private vulnerability reporting](https://github.com/matthew-reed-holden/safeconv/security/advisories/new)
 
 ### What to Include
 

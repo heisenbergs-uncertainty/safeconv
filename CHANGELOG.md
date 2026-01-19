@@ -36,5 +36,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive test coverage (97.8%)
 - Package documentation with examples
 
-[Unreleased]: https://github.com/heisenbergs-uncertainty/safeconv/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/heisenbergs-uncertainty/safeconv/releases/tag/v0.1.0
+[Unreleased]: https://github.com/matthew-reed-holden/safeconv/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.1.0

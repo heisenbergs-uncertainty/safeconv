@@ -8,7 +8,7 @@ import (
 	"log"
 	"math"
 
-	"github.com/heisenbergs-uncertainty/safeconv"
+	"github.com/matthew-reed-holden/safeconv"
 )
 
 func main() {

@@ -17,10 +17,10 @@
 
 **Step 1: Update module path**
 
-Change module name from `github.com/heisenbergs-uncertainty/safe` to `github.com/heisenbergs-uncertainty/safeconv`:
+Change module name from `github.com/matthew-reed-holden/safe` to `github.com/matthew-reed-holden/safeconv`:
 
 ```go
-module github.com/heisenbergs-uncertainty/safeconv
+module github.com/matthew-reed-holden/safeconv
 
 go 1.24.11
 ```

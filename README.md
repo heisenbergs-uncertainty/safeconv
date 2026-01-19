@@ -1,7 +1,7 @@
 # safeconv
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/heisenbergs-uncertainty/safecon)](https://pkg.go.dev/github.com/heisenbergs-uncertainty/safeconv)
-[![Go Report Card](https://goreportcard.com/badge/github.com/heisenbergs-uncertainty/safeconv)](https://goreportcard.com/report/github.com/heisenbergs-uncertainty/safeconv)
+[![Go Reference](https://pkg.go.dev/badge/github.com/matthew-reed-holden/safecon)](https://pkg.go.dev/github.com/matthew-reed-holden/safeconv)
+[![Go Report Card](https://goreportcard.com/badge/github.com/matthew-reed-holden/safeconv)](https://goreportcard.com/report/github.com/matthew-reed-holden/safeconv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Safe type conversions for Go that detect overflow, underflow, and precision loss at runtime.**
@@ -23,7 +23,7 @@ if errors.Is(err, safeconv.ErrOverflow) {
 ## Installation
 
 ```bash
-go get github.com/heisenbergs-uncertainty/safeconv
+go get github.com/matthew-reed-holden/safeconv
 ```
 
 Requires Go 1.21 or later.
@@ -44,7 +44,7 @@ These silent failures cause security vulnerabilities ([gosec G115](https://githu
 ## Quick Start
 
 ```go
-import "github.com/heisenbergs-uncertainty/safeconv"
+import "github.com/matthew-reed-holden/safeconv"
 
 // Integer conversion with error handling
 func processUserID(id int64) (uint32, error) {
