@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	fmt.Println("=== safeconv Basic Examples ===\n")
+	fmt.Println("=== safeconv Basic Examples ===")
 
 	// Example 1: Safe integer conversion
 	fmt.Println("1. Integer Conversion (success)")

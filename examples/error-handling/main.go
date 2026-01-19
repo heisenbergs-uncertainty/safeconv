@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	fmt.Println("=== safeconv Error Handling Examples ===\n")
+	fmt.Println("=== safeconv Error Handling Examples ===")
 
 	// Example 1: Using errors.Is for quick checks
 	fmt.Println("1. Using errors.Is()")
