@@ -26,6 +26,12 @@ if errors.Is(err, safeconv.ErrOverflow) {
 go get github.com/matthew-reed-holden/safeconv
 ```
 
+If you encounter a module path mismatch from `v0.1.0`, install `v0.1.1` or later:
+
+```bash
+go get github.com/matthew-reed-holden/safeconv@v0.1.1
+```
+
 Requires Go 1.21 or later.
 
 ## Why safeconv?

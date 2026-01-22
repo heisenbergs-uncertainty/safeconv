@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-01-22
+
+### Fixed
+
+- Correct module path in release tags so `go get github.com/matthew-reed-holden/safeconv` resolves without mismatched module errors.
+
 ## [0.1.0] - 2026-01-17
 
 ### Added
@@ -36,5 +42,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive test coverage (97.8%)
 - Package documentation with examples
 
-[Unreleased]: https://github.com/matthew-reed-holden/safeconv/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/matthew-reed-holden/safeconv/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.1.1
 [0.1.0]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.1.0
