@@ -57,3 +57,111 @@ func TestConversionError_As(t *testing.T) {
 		t.Errorf("Value = %v, want %v", convErr.Value, int64(-5))
 	}
 }
+
+func TestConversionError_IsOverflow(t *testing.T) {
+	tests := []struct {
+		name string
+		err  error
+		want bool
+	}{
+		{"overflow error", ErrOverflow, true},
+		{"underflow error", ErrUnderflow, false},
+		{"nan error", ErrNaN, false},
+		{"infinity error", ErrInfinity, false},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			convErr := &ConversionError{
+				From:  "int64",
+				To:    "uint32",
+				Value: int64(0),
+				Err:   tt.err,
+			}
+			if got := convErr.IsOverflow(); got != tt.want {
+				t.Errorf("IsOverflow() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestConversionError_IsUnderflow(t *testing.T) {
+	tests := []struct {
+		name string
+		err  error
+		want bool
+	}{
+		{"overflow error", ErrOverflow, false},
+		{"underflow error", ErrUnderflow, true},
+		{"nan error", ErrNaN, false},
+		{"infinity error", ErrInfinity, false},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			convErr := &ConversionError{
+				From:  "int64",
+				To:    "uint32",
+				Value: int64(0),
+				Err:   tt.err,
+			}
+			if got := convErr.IsUnderflow(); got != tt.want {
+				t.Errorf("IsUnderflow() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestConversionError_IsNaN(t *testing.T) {
+	tests := []struct {
+		name string
+		err  error
+		want bool
+	}{
+		{"overflow error", ErrOverflow, false},
+		{"underflow error", ErrUnderflow, false},
+		{"nan error", ErrNaN, true},
+		{"infinity error", ErrInfinity, false},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			convErr := &ConversionError{
+				From:  "float64",
+				To:    "int64",
+				Value: float64(0),
+				Err:   tt.err,
+			}
+			if got := convErr.IsNaN(); got != tt.want {
+				t.Errorf("IsNaN() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestConversionError_IsInfinity(t *testing.T) {
+	tests := []struct {
+		name string
+		err  error
+		want bool
+	}{
+		{"overflow error", ErrOverflow, false},
+		{"underflow error", ErrUnderflow, false},
+		{"nan error", ErrNaN, false},
+		{"infinity error", ErrInfinity, true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			convErr := &ConversionError{
+				From:  "float64",
+				To:    "int64",
+				Value: float64(0),
+				Err:   tt.err,
+			}
+			if got := convErr.IsInfinity(); got != tt.want {
+				t.Errorf("IsInfinity() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

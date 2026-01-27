@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-01-26
+
+### Added
+
+- **Error convenience methods** on `ConversionError`:
+  - `IsOverflow()` - returns true if error is due to overflow
+  - `IsUnderflow()` - returns true if error is due to underflow
+  - `IsNaN()` - returns true if error is due to NaN
+  - `IsInfinity()` - returns true if error is due to infinity
+
+- **Clamp variants** for all conversion types:
+  - Signed to unsigned: `ClampInt64ToUint32`, etc. (25 functions)
+  - Unsigned to signed: `ClampUint64ToInt32`, etc. (17 functions)
+  - Signed narrowing: `ClampInt64ToInt32`, etc. (10 functions)
+  - Unsigned narrowing: `ClampUint64ToUint32`, etc. (10 functions)
+  - Float truncation: `ClampFloat64TruncToInt64`, etc. (20 functions)
+  - Float rounding: `ClampFloat64RoundToInt64`, etc. (20 functions)
+  - Clamp functions return clamped values for overflow/underflow
+  - Float clamp functions still return errors for NaN and Infinity
+
 ## [0.1.1] - 2026-01-22
 
 ### Fixed
@@ -42,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive test coverage (97.8%)
 - Package documentation with examples
 
-[Unreleased]: https://github.com/matthew-reed-holden/safeconv/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/matthew-reed-holden/safeconv/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.2.0
 [0.1.1]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.1.1
 [0.1.0]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.1.0

@@ -165,6 +165,27 @@ func TestSomething(t *testing.T) {
 }
 ```
 
+### Clamp Variants
+
+When you want values clamped to the target type's range instead of receiving errors, use `Clamp*` functions:
+
+```go
+// Clamp to valid range instead of error
+val := safeconv.ClampInt64ToUint32(-5)     // → 0 (clamped to min)
+val := safeconv.ClampInt64ToUint32(1e10)   // → 4294967295 (clamped to max)
+val := safeconv.ClampInt64ToInt8(1000)     // → 127 (clamped to MaxInt8)
+val := safeconv.ClampInt64ToInt8(-1000)    // → -128 (clamped to MinInt8)
+
+// Float clamping still errors on NaN/Infinity
+val, err := safeconv.ClampFloat64TruncToInt32(1e20)  // → MaxInt32, nil
+val, err := safeconv.ClampFloat64TruncToInt32(math.NaN())  // → 0, ErrNaN
+```
+
+Use clamp functions for:
+- Graphics/audio processing where clamping is expected behavior
+- Progress bars, percentages, bounded values
+- Any case where "best effort" conversion is acceptable
+
 ## Error Handling
 
 ### Sentinel Errors
@@ -200,6 +221,12 @@ if errors.As(err, &convErr) {
         convErr.To,     // "uint32"
         convErr.Err,    // ErrUnderflow
     )
+
+    // Convenience methods for error type checking
+    if convErr.IsOverflow() { /* handle overflow */ }
+    if convErr.IsUnderflow() { /* handle underflow */ }
+    if convErr.IsNaN() { /* handle NaN */ }
+    if convErr.IsInfinity() { /* handle infinity */ }
 }
 ```
 

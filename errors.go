@@ -38,3 +38,23 @@ func (e *ConversionError) Error() string {
 func (e *ConversionError) Unwrap() error {
 	return e.Err
 }
+
+// IsOverflow returns true if the error is due to overflow.
+func (e *ConversionError) IsOverflow() bool {
+	return errors.Is(e.Err, ErrOverflow)
+}
+
+// IsUnderflow returns true if the error is due to underflow.
+func (e *ConversionError) IsUnderflow() bool {
+	return errors.Is(e.Err, ErrUnderflow)
+}
+
+// IsNaN returns true if the error is due to NaN.
+func (e *ConversionError) IsNaN() bool {
+	return errors.Is(e.Err, ErrNaN)
+}
+
+// IsInfinity returns true if the error is due to infinity.
+func (e *ConversionError) IsInfinity() bool {
+	return errors.Is(e.Err, ErrInfinity)
+}
