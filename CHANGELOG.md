@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-01-28
+
+### Added
+
+- **Rune conversions** with Unicode validation:
+  - Integer to rune: `Int64ToRune`, `Int32ToRune`, `IntToRune`, `Int16ToRune`, `Int8ToRune`
+  - Unsigned to rune: `Uint64ToRune`, `Uint32ToRune`, `UintToRune`, `Uint16ToRune`, `Uint8ToRune`
+  - Rune to integer: `RuneToInt64`, `RuneToInt32`, `RuneToInt`
+  - Rune to unsigned: `RuneToUint64`, `RuneToUint32`, `RuneToUint`, `RuneToUint16`, `RuneToUint8`
+  - Must variants for all fallible rune functions
+  - Validates Unicode range (0x0 to 0x10FFFF, excluding surrogates 0xD800-0xDFFF)
+
+- **New error type**: `ErrInvalidUnicode` for invalid Unicode code points
+- **New convenience method**: `IsInvalidUnicode()` on `ConversionError`
+- **Helper function**: `IsValidRune()` for quick Unicode validation
+
+### Notes
+
+- `byte` is an alias for `uint8` - use `*Uint8*` functions for byte conversions
+- `rune` is an alias for `int32` but rune functions add Unicode validation
+
 ## [0.2.0] - 2026-01-26
 
 ### Added
@@ -62,7 +83,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive test coverage (97.8%)
 - Package documentation with examples
 
-[Unreleased]: https://github.com/matthew-reed-holden/safeconv/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/matthew-reed-holden/safeconv/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.3.0
 [0.2.0]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.2.0
 [0.1.1]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.1.1
 [0.1.0]: https://github.com/matthew-reed-holden/safeconv/releases/tag/v0.1.0

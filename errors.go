@@ -19,6 +19,10 @@ var (
 
 	// ErrInfinity indicates the value is infinite and cannot be converted.
 	ErrInfinity = errors.New("cannot convert infinity")
+
+	// ErrInvalidUnicode indicates the value is not a valid Unicode code point.
+	// Valid code points are 0x0 to 0x10FFFF, excluding surrogates (0xD800-0xDFFF).
+	ErrInvalidUnicode = errors.New("value is not a valid Unicode code point")
 )
 
 // ConversionError provides detailed information about a failed conversion.
@@ -57,4 +61,9 @@ func (e *ConversionError) IsNaN() bool {
 // IsInfinity returns true if the error is due to infinity.
 func (e *ConversionError) IsInfinity() bool {
 	return errors.Is(e.Err, ErrInfinity)
+}
+
+// IsInvalidUnicode returns true if the error is due to an invalid Unicode code point.
+func (e *ConversionError) IsInvalidUnicode() bool {
+	return errors.Is(e.Err, ErrInvalidUnicode)
 }

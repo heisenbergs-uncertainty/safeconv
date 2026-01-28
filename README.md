@@ -227,6 +227,7 @@ if errors.As(err, &convErr) {
     if convErr.IsUnderflow() { /* handle underflow */ }
     if convErr.IsNaN() { /* handle NaN */ }
     if convErr.IsInfinity() { /* handle infinity */ }
+    if convErr.IsInvalidUnicode() { /* handle invalid Unicode */ }
 }
 ```
 
@@ -238,6 +239,7 @@ if errors.As(err, &convErr) {
 | `ErrUnderflow` | Value is below the minimum of the target type (includes negative → unsigned) |
 | `ErrNaN` | Float value is NaN (not a number) |
 | `ErrInfinity` | Float value is positive or negative infinity |
+| `ErrInvalidUnicode` | Value is not a valid Unicode code point (for rune conversions) |
 
 ## Complete Function Reference
 
@@ -404,6 +406,41 @@ All `Float*RoundTo*` functions round to nearest, with ties going away from zero:
 | From | To | Function | Notes |
 |------|----|----------|-------|
 | `float64` | `float32` | `Float64ToFloat32` | Errors on overflow; NaN/Inf propagate |
+
+### Rune Conversions
+
+Rune conversions validate Unicode code points (0x0 to 0x10FFFF, excluding surrogates 0xD800-0xDFFF):
+
+```go
+// Integer to rune with Unicode validation
+r, err := safeconv.Int64ToRune(0x1F600)  // → '😀', nil
+r, err := safeconv.Int64ToRune(0xD800)   // → error: ErrInvalidUnicode (surrogate)
+r, err := safeconv.Int64ToRune(-1)       // → error: ErrUnderflow
+
+// Rune to integer
+n := safeconv.RuneToInt64('A')           // → 65 (always succeeds)
+n, err := safeconv.RuneToUint8('A')      // → 65, nil
+n, err := safeconv.RuneToUint8('😀')     // → error: ErrOverflow (exceeds 255)
+```
+
+| From | To | Function | Notes |
+|------|----|----------|-------|
+| `int64` | `rune` | `Int64ToRune` | Validates Unicode range |
+| `int32` | `rune` | `Int32ToRune` | Validates Unicode range |
+| `int` | `rune` | `IntToRune` | Validates Unicode range |
+| `uint64` | `rune` | `Uint64ToRune` | Validates Unicode range |
+| `uint32` | `rune` | `Uint32ToRune` | Validates Unicode range |
+| `uint8` | `rune` | `Uint8ToRune` | Always succeeds |
+| `rune` | `int64` | `RuneToInt64` | Always succeeds |
+| `rune` | `int32` | `RuneToInt32` | Always succeeds (rune = int32) |
+| `rune` | `uint64` | `RuneToUint64` | Fails if negative |
+| `rune` | `uint8` | `RuneToUint8` | Fails if > 255 or negative |
+
+### Type Aliases
+
+Go has two type aliases for integers:
+- `byte` = `uint8` — Use `*Uint8*` functions for byte conversions
+- `rune` = `int32` — Use `*Rune*` functions with Unicode validation, or `*Int32*` for raw int32 semantics
 
 ## Design Philosophy
 
